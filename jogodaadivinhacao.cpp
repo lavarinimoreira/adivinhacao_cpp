@@ -5,14 +5,16 @@
 #   Este programa tem como principal objetivo estudar as funcionalidades    #
 #   básicas da linguagem C++. Para tal foi utilizado o conceito do jogo     #
 #   de adivinhação, que consiste na geração de um número aleatório entre    #
-#   0 e 100 que terá que ser decifrado por meio de tentativas.              #
+#   0 e 99 que terá que ser decifrado por meio de tentativas.              #
 #                                                                           #
 #   Autor: Gabriel Lavarini <lavarinimoreira@gmail.com>                     #
 #   github.com/lavarinimoreira                                              #
 #                                                                           #
 #--------------------------------------------------------------------------*/
 
-#include<iostream>
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 //Declaração das funções.
@@ -22,19 +24,51 @@ int gera_numero_secreto();
 bool compara(int, int);
 
 int main (){
-    inicia_o_jogo();
+    int jogar_novamente;
+    do{
+        inicia_o_jogo();
+        cout << "1 - Jogar novamente\n2 - Sair" << endl;
+        cin >> jogar_novamente;
+    }while(jogar_novamente != 2);
+    
+    return EXIT_SUCCESS;
 }
 
 int inicia_o_jogo(){
 
     imprime_inicio();
+
+    int dificuldade = 0;
+    do{
+         cout << "Escolha o nível de dificuldade: " << endl;
+         cout << "1 - Fácil\n2 - Médio\n3 - Difícil\n";    
+        cin >> dificuldade;
+        if(dificuldade < 1 || dificuldade > 3){
+            cout << "Nível INVÁLIDO." << endl;
+        }
+    }while(dificuldade < 1 || dificuldade > 3);
+    
+
+    int numero_de_tentativas;
+
+    switch (dificuldade){
+        case 1: numero_de_tentativas = 15;
+            break;
+        case 2: numero_de_tentativas = 10;
+            break;
+        case 3: numero_de_tentativas = 5; 
+        default:
+            break;
+    }
+
     const int NUMERO_SECRETO = gera_numero_secreto();
     bool condicao = false;
-    int tentativas = 0;
+    int tentativas;
     double pontos = 1000.0;
 
-    while (!condicao){
-        tentativas++;
+    for(tentativas = 0; tentativas <= numero_de_tentativas && !condicao; tentativas++){
+        //tentativas++;
+        cout << "Tentativa número " << tentativas+1 << endl;
         int chute;
         cout << "Qual o seu chute? ";
         cin >> chute;
@@ -48,10 +82,15 @@ int inicia_o_jogo(){
     }
     
     cout << "\n\nFim de jogo!" << endl;
-    cout << "Você acertou o número secreto em " << tentativas << " tentativas." << endl;   
-    cout.precision(2);
-    cout << fixed;
-    cout << "Sua pontuação foi de " << pontos << " pontos." << endl;
+
+    if(!condicao){
+        cout << "Perdeu =/\n\n";
+    }else{
+        cout << "Você acertou o número secreto em " << tentativas << " tentativas." << endl;   
+        cout.precision(2); //Definindo quantas casas após a vírgula serão mostradas.
+        cout << fixed; //Fixando para não mostrar em notação científica.
+        cout << "Sua pontuação foi de " << pontos << " pontos.\n" << endl;
+    }
 
     return EXIT_SUCCESS;
 }
@@ -67,7 +106,8 @@ void imprime_inicio(){
 |   Tem como retorno o número gerado.                           |
 |--------------------------------------------------------------*/
 int gera_numero_secreto(){
-    int n = 42;
+    srand(time(NULL)); // "Semente" para gerar um número aleatório.
+    int n = rand() % 100;
     return n;
 }
 
@@ -84,14 +124,11 @@ bool compara(int numero_secreto, int chute){
         cout << "Parabéns! Você acertou o número secreto!" << endl;
         return acertou;
     }
-
     else if (maior){
         cout << "Seu chute foi maior que o número secreto!" << endl;
-        return false;
     }
-
     else {
         cout << "Seu chute foi menor que número secreto!" << endl;
-        return false;
     }
+    return false;
 }
