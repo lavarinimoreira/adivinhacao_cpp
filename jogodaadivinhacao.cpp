@@ -35,7 +35,6 @@ int main (){
 }
 
 int inicia_o_jogo(){
-
     imprime_inicio();
 
     int dificuldade = 0;
@@ -48,9 +47,7 @@ int inicia_o_jogo(){
         }
     }while(dificuldade < 1 || dificuldade > 3);
     
-
     int numero_de_tentativas;
-
     switch (dificuldade){
         case 1: numero_de_tentativas = 15;
             break;
@@ -67,7 +64,6 @@ int inicia_o_jogo(){
     double pontos = 1000.0;
 
     for(tentativas = 0; tentativas < numero_de_tentativas && !condicao; tentativas++){
-        //tentativas++;
         cout << "Tentativa número " << tentativas+1 << endl;
         int chute;
         cout << "Qual o seu chute? ";
@@ -121,14 +117,14 @@ bool compara(int numero_secreto, int chute){
     bool maior = chute > numero_secreto;
 
      if (acertou){
-        cout << "Parabéns! Você acertou o número secreto!" << endl;
+        cout << "Parabéns! Você acertou o número secreto!\n" << endl;
         return acertou;
     }
     else if (maior){
-        cout << "Seu chute foi maior que o número secreto!" << endl;
+        cout << "Seu chute foi maior que o número secreto!\n" << endl;
     }
     else {
-        cout << "Seu chute foi menor que número secreto!" << endl;
+        cout << "Seu chute foi menor que número secreto!\n" << endl;
     }
     return false;
 }
