@@ -5,7 +5,7 @@
 #   Este programa tem como principal objetivo estudar as funcionalidades    #
 #   básicas da linguagem C++. Para tal foi utilizado o conceito do jogo     #
 #   de adivinhação, que consiste na geração de um número aleatório entre    #
-#   0 e 99 que terá que ser decifrado por meio de tentativas.              #
+#   0 e 99 que terá que ser decifrado por meio de tentativas.               #
 #                                                                           #
 #   Autor: Gabriel Lavarini <lavarinimoreira@gmail.com>                     #
 #   github.com/lavarinimoreira                                              #
@@ -66,7 +66,7 @@ int inicia_o_jogo(){
     int tentativas;
     double pontos = 1000.0;
 
-    for(tentativas = 0; tentativas <= numero_de_tentativas && !condicao; tentativas++){
+    for(tentativas = 0; tentativas < numero_de_tentativas && !condicao; tentativas++){
         //tentativas++;
         cout << "Tentativa número " << tentativas+1 << endl;
         int chute;
