@@ -28,23 +28,30 @@ int main (){
 int inicia_o_jogo(){
 
     imprime_inicio();
-    int numero_secreto = gera_numero_secreto();
+    const int NUMERO_SECRETO = gera_numero_secreto();
     bool condicao = false;
     int tentativas = 0;
+    double pontos = 1000.0;
 
     while (!condicao){
         tentativas++;
-         int chute;
-         cout << "Qual o seu chute? ";
-         cin >> chute;
+        int chute;
+        cout << "Qual o seu chute? ";
+        cin >> chute;
 
-         cout << "O valor do seu chute é: " << chute << endl;
+        double pontos_perdidos = abs/*absolute*/(chute - NUMERO_SECRETO)/2.0;
+        pontos = pontos - pontos_perdidos;
 
-         condicao = compara(numero_secreto, chute);
+        cout << "O valor do seu chute é: " << chute << endl;
+
+        condicao = compara(NUMERO_SECRETO, chute);
     }
     
     cout << "\n\nFim de jogo!" << endl;
-    cout << "Você acertou o número secreto em " << tentativas << " tentativas" << endl;   
+    cout << "Você acertou o número secreto em " << tentativas << " tentativas." << endl;   
+    cout.precision(2);
+    cout << fixed;
+    cout << "Sua pontuação foi de " << pontos << " pontos." << endl;
 
     return EXIT_SUCCESS;
 }
