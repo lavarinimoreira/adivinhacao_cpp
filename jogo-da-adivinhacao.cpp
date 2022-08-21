@@ -1,6 +1,6 @@
 /*--------------------------------------------------------------------------+
 #                                                                           #
-#   jogodaadivinhacao.cpp                                                   #
+#   jogo-da-adivinhacao.cpp                                                   #
 #                                                                           #
 #   Este programa tem como principal objetivo estudar as funcionalidades    #
 #   básicas da linguagem C++. Para tal foi utilizado o conceito do jogo     #
