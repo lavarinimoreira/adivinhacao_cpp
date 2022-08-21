@@ -69,7 +69,7 @@ int inicia_o_jogo(){
         cout << "Qual o seu chute? ";
         cin >> chute;
 
-        double pontos_perdidos = abs/*absolute*/(chute - NUMERO_SECRETO)/2.0;
+        double pontos_perdidos = abs/*absolute*/(chute - NUMERO_SECRETO);
         pontos = pontos - pontos_perdidos;
 
         cout << "O valor do seu chute é: " << chute << endl;
@@ -98,7 +98,7 @@ void imprime_inicio(){
 }
 
 /*--------------------------------------------------------------+
-|   Esta função gera um número inteiro aleatório entre 0 e 100. |
+|   Esta função gera um número inteiro aleatório entre 1 e 99.  |
 |   Tem como retorno o número gerado.                           |
 |--------------------------------------------------------------*/
 int gera_numero_secreto(){
