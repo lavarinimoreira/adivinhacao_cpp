@@ -5,7 +5,7 @@
 #   Este programa tem como principal objetivo estudar as funcionalidades    #
 #   básicas da linguagem C++. Para tal foi utilizado o conceito do jogo     #
 #   de adivinhação, que consiste na geração de um número aleatório entre    #
-#   0 e 99 que terá que ser decifrado por meio de tentativas.               #
+#   1 e 100 que terá que ser decifrado por meio de tentativas.              #
 #                                                                           #
 #   Autor: Gabriel Lavarini <lavarinimoreira@gmail.com>                     #
 #   github.com/lavarinimoreira                                              #
@@ -98,12 +98,12 @@ void imprime_inicio(){
 }
 
 /*--------------------------------------------------------------+
-|   Esta função gera um número inteiro aleatório entre 1 e 99.  |
+|   Esta função gera um número inteiro aleatório entre 1 e 100. |
 |   Tem como retorno o número gerado.                           |
 |--------------------------------------------------------------*/
 int gera_numero_secreto(){
     srand(time(NULL)); // "Semente" para gerar um número aleatório.
-    int n = rand() % 100;
+    int n = (rand() % 100) + 1;
     return n;
 }
 
